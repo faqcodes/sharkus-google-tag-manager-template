@@ -47,11 +47,11 @@ test('GTM artifact has lifecycle and permission-denial Template Editor tests', (
   assert.match(section('SANDBOXED_JS_FOR_WEB_TEMPLATE', 'WEB_PERMISSIONS'), /data\.gtmOnFailure/);
 });
 
-test('Gallery submission files use the release-SHA placeholder', () => {
+test('Gallery submission files contain a release SHA', () => {
   for (const name of ['metadata.yaml', 'LICENSE', 'README.md', 'PUBLISHING.md']) {
     assert.equal(fs.existsSync(path.join(directory, name)), true);
   }
   const metadata = fs.readFileSync(path.join(directory, 'metadata.yaml'), 'utf8');
-  assert.match(metadata, /sha: REPLACE_WITH_RELEASE_COMMIT_SHA/);
-  assert.doesNotMatch(metadata, /sha: [0-9a-f]{40}/i);
+  assert.match(metadata, /sha: [0-9a-f]{40}/i);
+  assert.doesNotMatch(metadata, /REPLACE_WITH_RELEASE_COMMIT_SHA/);
 });

@@ -3,5 +3,5 @@ homepage: "https://sharkus.cl"
 # submission, publish the guide and add, for example:
 # documentation: "https://sharkus.cl/docs/google-tag-manager"
 versions:
-  - sha: REPLACE_WITH_RELEASE_COMMIT_SHA
+  - sha: 4df5fc7c86c93b611aa9679e55bcfded5cdaf151
     changeNotes: Initial release of the Sharkus Chat Widget GTM template.

@@ -26,9 +26,9 @@ by Google.
    topmost `versions` item with that payload commit's full SHA and change notes
    in a follow-up metadata commit, then push. Keep entries newest-first.
 
-Before submission, publish a real public GTM documentation page and add its URL
-as `documentation` in `metadata.yaml`. The intended Sharkus URL is
-`https://sharkus.cl/docs/google-tag-manager`; it is not asserted to be live by
-this source artifact.
+The public GTM documentation is
+`https://docs.sharkus.cl/google-tag-manager` and is declared as
+`documentation` in `metadata.yaml`. Keep this page available while the template
+is listed in the Gallery.
 
 References: Google's [Gallery submission guide](https://developers.google.com/tag-platform/tag-manager/templates/gallery), [permissions guide](https://developers.google.com/tag-platform/tag-manager/templates/permissions), and [Template Editor tests guide](https://developers.google.com/tag-platform/tag-manager/templates/tests).

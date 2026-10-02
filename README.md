@@ -3,6 +3,8 @@
 This is the official Google Tag Manager (GTM) Community Template source for
 installing the Sharkus AI chat widget.
 
+Documentation: [docs.sharkus.cl/google-tag-manager](https://docs.sharkus.cl/google-tag-manager).
+
 ## Installation
 
 1. Open Google Tag Manager.

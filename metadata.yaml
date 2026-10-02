@@ -1,6 +1,8 @@
 homepage: "https://sharkus.cl"
 documentation: "https://docs.sharkus.cl/google-tag-manager"
 versions:
+  - sha: 4b406fbc742d95a01b17e5e5f29025ef66154135
+    changeNotes: Use the complete Apache 2.0 LICENSE required by the Community Template Gallery.
   - sha: 55fe855c5faa17eb91198508d9b0ba098dcaa388
     changeNotes: Fix Widget ID validation for Google Tag Manager Sandboxed JavaScript.
   - sha: 4df5fc7c86c93b611aa9679e55bcfded5cdaf151

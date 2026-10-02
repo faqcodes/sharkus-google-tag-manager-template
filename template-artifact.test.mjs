@@ -47,6 +47,35 @@ test('GTM artifact has lifecycle and permission-denial Template Editor tests', (
   assert.match(section('SANDBOXED_JS_FOR_WEB_TEMPLATE', 'WEB_PERMISSIONS'), /data\.gtmOnFailure/);
 });
 
+test('GTM sandbox validation does not use unsupported regular-expression literals', () => {
+  const code = section('SANDBOXED_JS_FOR_WEB_TEMPLATE', 'WEB_PERMISSIONS');
+  assert.match(code, /function isUuidV4\(value\)/);
+  assert.doesNotMatch(code, /const uuidV4 = \//);
+});
+
+test('GTM sandbox UUID v4 validation accepts valid IDs and rejects invalid IDs', () => {
+  const calls = [];
+  const dependencies = {
+    injectScript: (url) => calls.push(url),
+    queryPermission: () => true,
+  };
+  const execute = (widgetId) => new Function('require', 'data', section(
+    'SANDBOXED_JS_FOR_WEB_TEMPLATE',
+    'WEB_PERMISSIONS',
+  ))(
+    (name) => dependencies[name],
+    { widgetId, gtmOnSuccess() {}, gtmOnFailure() {} },
+  );
+
+  execute('869eb25e-11b7-4314-8637-85ae05f0235c');
+  execute('869eb25e-11b7-5314-8637-85ae05f0235c');
+  execute('not-a-widget-id');
+
+  assert.deepEqual(calls, [
+    'https://widget.sharkus.cl/loader.js?widgetId=869eb25e-11b7-4314-8637-85ae05f0235c',
+  ]);
+});
+
 test('Gallery submission files contain a release SHA', () => {
   for (const name of ['metadata.yaml', 'LICENSE', 'README.md', 'PUBLISHING.md']) {
     assert.equal(fs.existsSync(path.join(directory, name)), true);

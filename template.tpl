@@ -55,9 +55,33 @@ const injectScript = require('injectScript');
 const queryPermission = require('queryPermission');
 const loaderUrl = 'https://widget.sharkus.cl/loader.js';
 const widgetId = (data.widgetId || '').trim();
-const uuidV4 = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
-if (!uuidV4.test(widgetId)) {
+function isUuidV4(value) {
+  const parts = value.toLowerCase().split('-');
+  const expectedLengths = [8, 4, 4, 4, 12];
+  const hex = '0123456789abcdef';
+
+  if (parts.length !== expectedLengths.length ||
+      parts[2].charAt(0) !== '4' ||
+      '89ab'.indexOf(parts[3].charAt(0)) === -1) {
+    return false;
+  }
+
+  for (let partIndex = 0; partIndex < parts.length; partIndex++) {
+    if (parts[partIndex].length !== expectedLengths[partIndex]) {
+      return false;
+    }
+    for (let characterIndex = 0; characterIndex < parts[partIndex].length; characterIndex++) {
+      if (hex.indexOf(parts[partIndex].charAt(characterIndex)) === -1) {
+        return false;
+      }
+    }
+  }
+
+  return true;
+}
+
+if (!isUuidV4(widgetId)) {
   data.gtmOnFailure();
   return;
 }

@@ -84,3 +84,10 @@ test('Gallery submission files contain a release SHA', () => {
   assert.match(metadata, /sha: [0-9a-f]{40}/i);
   assert.doesNotMatch(metadata, /REPLACE_WITH_RELEASE_COMMIT_SHA/);
 });
+
+test('LICENSE contains the complete Apache 2.0 appendix and Sharkus notice', () => {
+  const license = fs.readFileSync(path.join(directory, 'LICENSE'), 'utf8');
+  assert.match(license, /APPENDIX: How to apply the Apache License to your work\./);
+  assert.match(license, /Copyright 2026 Sharkus/);
+  assert.match(license, /Licensed under the Apache License, Version 2\.0/);
+});

@@ -12,7 +12,7 @@ ___INFO___
   "id": "cvt_temp_public_id",
   "version": 1,
   "securityGroups": [],
-  "displayName": "Sharkus Chat Widget",
+  "displayName": "Sharkus AI Chat Widget",
   "description": "Install the Sharkus AI chat widget with a public Widget ID.",
   "categories": [
     "TAG_MANAGEMENT"
